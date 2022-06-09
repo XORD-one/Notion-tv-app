@@ -7,19 +7,21 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import WebView from 'react-native-webview';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Home from './screens/Home';
+import NotionView from './screens/NotionView';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <WebView
-        source={{
-          uri: 'https://xord.notion.site/Xord-Homepage-170e039e39c24dffadefef0559e3257e',
-        }}
-        style={{width: '100%', height: '100%'}}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="NotionView" component={NotionView} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
