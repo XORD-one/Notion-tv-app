@@ -19,7 +19,6 @@ const GalleryItem = ({
   const [focus, setFocus] = useState(false);
 
   const onFocus = () => {
-    console.log(title, ' in focus');
     setFocus(true);
   };
 
@@ -50,9 +49,7 @@ const GalleryItem = ({
       }>
       <View>
         <Image style={styles.image} source={image} />
-        <Text style={[styles.text, focus ? styles.focusedText : null]}>
-          {title}
-        </Text>
+        <Text style={styles.text}>{title}</Text>
       </View>
     </TouchableHighlight>
   );
@@ -67,7 +64,6 @@ const styles = StyleSheet.create({
   },
   wrapperFocused: {
     borderColor: '#714add',
-    backgroundColor: 'red',
   },
   image: {
     width: 250,
@@ -81,9 +77,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
-  },
-  focusedText: {
-    color: 'red',
   },
 });
 
