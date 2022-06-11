@@ -79,8 +79,7 @@ export const DEFAULT_ITEMS = [
   {
     name: 'Ventures',
     image:
-      // 'https://res.cloudinary.com/n4beel1/image/upload/v1654939714/Xord%20Notion/Xord_Ventures_zppatd.png',
-      'https://file-examples.com/wp-content/uploads/2017/10/file_example_PNG_500kB.png',
+      'https://res.cloudinary.com/n4beel1/image/upload/v1654939714/Xord%20Notion/Xord_Ventures_zppatd.png',
     screens: [
       ...COMMON_SCREENS,
       'https://xord.notion.site/906981c5cd6342c6886ac022ca55c958?v=b878a006fb784652b674d96254a3ed07',
