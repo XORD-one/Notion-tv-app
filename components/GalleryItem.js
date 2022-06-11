@@ -20,6 +20,7 @@ const GalleryItem = ({
 
   const onFocus = () => {
     setFocus(true);
+    console.log(image);
   };
 
   const onBlur = useCallback(() => {
@@ -48,7 +49,15 @@ const GalleryItem = ({
         blockFocusRight ? findNodeHandle(touchableHighlightRef.current) : null
       }>
       <View>
-        <Image style={styles.image} source={image} />
+        <Image
+          style={styles.image}
+          source={{
+            uri: image,
+            headers: {
+              Accept: '*/*',
+            },
+          }}
+        />
         <Text style={styles.text}>{title}</Text>
       </View>
     </TouchableHighlight>
