@@ -2,7 +2,7 @@
   "screens": [
     {
       "name": "Unipilot",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939674/Xord%20Notion/Unipilot_s879nm.png",
+      "image": "./../images/unipilot.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -15,7 +15,7 @@
     },
     {
       "name": "Solutions",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939715/Xord%20Notion/Xord_solutions_or_Regens_sxso7p.png",
+      "image": "./../images/solutions.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -28,7 +28,7 @@
     },
     {
       "name": "Blockship",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939674/Xord%20Notion/Blockship_2_atefxn.png",
+      "image": "./../images/blockship.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -41,7 +41,7 @@
     },
     {
       "name": "BlockApex",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939674/Xord%20Notion/BlockApex_2_pryuxo.png",
+      "image": "./../images/blockapex.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -54,7 +54,7 @@
     },
     {
       "name": "Expedite",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939674/Xord%20Notion/Expedite_g1yqcg.png",
+      "image": "./../images/expedite.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -67,7 +67,7 @@
     },
     {
       "name": "Project X",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1655020066/Xord%20Notion/Novon_smqguy.png",
+      "image": "./../images/novon.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
@@ -79,7 +79,7 @@
     },
     {
       "name": "Ventures",
-      "image": "https://res.cloudinary.com/n4beel1/image/upload/v1654939714/Xord%20Notion/Xord_Ventures_zppatd.png",
+      "image": "./../images/ventures.png",
       "screens": [
         "https://xord.notion.site/Make-Web3-usable-for-1-billion-people-Dec-32-1e6ef3296c074c16b67264d2bf5591c5",
         "https://xord.notion.site/6583b867682f4cfa948f17f9a5fd21d7?v=1e72aeb68f90449195ed782f96484e65",
