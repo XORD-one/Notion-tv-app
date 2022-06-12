@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   findNodeHandle,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 const GalleryItem = ({
   title,
@@ -49,14 +50,18 @@ const GalleryItem = ({
         blockFocusRight ? findNodeHandle(touchableHighlightRef.current) : null
       }>
       <View>
-        <Image
+        {/* <Image
+          style={styles.image}
+          resizeMode="cover"
+          source={{uri: image}}
+        /> */}
+        <FastImage
           style={styles.image}
           source={{
             uri: image,
-            headers: {
-              Accept: '*/*',
-            },
+            priority: FastImage.priority.normal,
           }}
+          resizeMode={FastImage.resizeMode.cover}
         />
         <Text style={styles.text}>{title}</Text>
       </View>

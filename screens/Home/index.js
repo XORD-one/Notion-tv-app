@@ -6,7 +6,8 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import {useFocusEffect} from '@react-navigation/native';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,14 +15,30 @@ import {
   View,
   StatusBar,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
+import shuffle from 'lodash.shuffle';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Gallery from '../../components/Gallery';
+import GalleryItem from '../../components/GalleryItem';
 
-const {width, height} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      let data = await fetch(
+        'https://raw.githubusercontent.com/n4beel/webview-example/main/SCREENS_DATA.json',
+      );
+      data = await data.json();
+      setItems(shuffle(data.screens));
+      setLoading(false);
+    })();
+  }, []);
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -29,11 +46,29 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Gallery rowNumber={0} />
+          {loading ? (
+            <View style={styles.loadingBody}>
+              <ActivityIndicator size="large" />
             </View>
-          </View>
+          ) : (
+            <View style={styles.body}>
+              <View style={styles.sectionContainer}>
+                <ScrollView horizontal style={styles.row}>
+                  {items &&
+                    items.map((item, i) => (
+                      <GalleryItem
+                        key={i}
+                        title={item.name}
+                        image={item.image}
+                        screens={item.screens}
+                        hasTVPreferredFocus={i === 0}
+                        blockFocusRight={i === items.length - 1}
+                      />
+                    ))}
+                </ScrollView>
+              </View>
+            </View>
+          )}
         </ScrollView>
       </SafeAreaView>
     </>
@@ -52,6 +87,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.black,
     height,
+  },
+  loadingBody: {
+    flex: 1,
+    backgroundColor: Colors.black,
+    height,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sectionContainer: {
     marginTop: 32,
