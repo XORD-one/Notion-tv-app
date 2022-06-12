@@ -50,11 +50,7 @@ const GalleryItem = ({
         blockFocusRight ? findNodeHandle(touchableHighlightRef.current) : null
       }>
       <View>
-        <Image
-          style={styles.image}
-          resizeMode="cover"
-          source={require(styles.image)}
-        />
+        <Image style={styles.image} resizeMode="cover" source={styles.image} />
         {/* <FastImage
           style={styles.image}
           source={{
