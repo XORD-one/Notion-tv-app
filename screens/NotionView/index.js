@@ -13,9 +13,10 @@ const NotionView = () => {
 
   useFocusEffect(() => {
     screens = route.params?.screens;
+    const screenTime = route.params?.screenTime;
     const interval = setInterval(() => {
       updateCount();
-    }, 40 * 1000);
+    }, screenTime * 60 * 1000);
 
     return () => {
       clearInterval(interval);

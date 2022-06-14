@@ -27,6 +27,7 @@ const {height} = Dimensions.get('window');
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
+  const [screenTime, setScreenTime] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -35,6 +36,7 @@ const App = () => {
       );
       data = await data.json();
       setItems(shuffle(data.screens));
+      setScreenTime(data.screenTimeInMinutes);
       setLoading(false);
     })();
   }, []);
@@ -61,6 +63,7 @@ const App = () => {
                         title={item.name}
                         image={item.image}
                         screens={item.screens}
+                        screenTime={screenTime}
                         hasTVPreferredFocus={i === 0}
                         blockFocusRight={i === items.length - 1}
                       />

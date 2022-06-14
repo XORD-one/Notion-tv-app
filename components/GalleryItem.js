@@ -14,6 +14,7 @@ const GalleryItem = ({
   title,
   image,
   screens,
+  screenTime,
   hasTVPreferredFocus,
   blockFocusRight,
 }) => {
@@ -41,7 +42,7 @@ const GalleryItem = ({
       onFocus={onFocus}
       onBlur={onBlur}
       onPress={() => {
-        navigation.navigate('NotionView', {screens});
+        navigation.navigate('NotionView', {screens, screenTime});
       }}
       hasTVPreferredFocus={hasTVPreferredFocus}
       style={[styles.wrapper, focus ? styles.wrapperFocused : null]}
