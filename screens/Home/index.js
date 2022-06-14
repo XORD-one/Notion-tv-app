@@ -68,15 +68,26 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          {loading ? (
+          {loading && (
             <View style={styles.loadingBody}>
               <ActivityIndicator size="large" />
             </View>
-          ) : error ? (
+          )}
+          {!!error && (
             <View style={styles.loadingBody}>
               <Text style={{fontSize: 20}}>{error}</Text>
               <TouchableHighlight
-                style={{backgroundColor: 'red', marginTop: 16}}
+                style={[
+                  {
+                    marginTop: 16,
+                    paddingVertical: 10,
+                    paddingHorizontal: 30,
+                    borderRadius: 30,
+                  },
+                  retryFocused
+                    ? styles.retryButtonActive
+                    : styles.retryButtonBlur,
+                ]}
                 ref={onRef}
                 onFocus={() => {
                   setRetryFocused(true);
@@ -85,29 +96,22 @@ const App = () => {
                   setRetryFocused(false);
                 }}
                 onPress={() => {
+                  console.log('retrying...');
                   setError('');
                   fetchScreensData();
                 }}
                 hasTVPreferredFocus={true}
                 blockFocusRight={1}>
-                <View
+                <Text
                   style={
-                    retryFocused
-                      ? styles.retryButtonActive
-                      : styles.retryButtonBlur
+                    retryFocused ? styles.retryTextActive : styles.retryTextBlur
                   }>
-                  <Text
-                    style={
-                      retryFocused
-                        ? styles.retryTextActive
-                        : styles.retryTextBlur
-                    }>
-                    Retry
-                  </Text>
-                </View>
+                  Retry
+                </Text>
               </TouchableHighlight>
             </View>
-          ) : (
+          )}
+          {items && (
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <ScrollView horizontal style={styles.row}>
@@ -182,17 +186,11 @@ const styles = StyleSheet.create({
   },
   retryButtonActive: {
     backgroundColor: '#fff',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 30,
   },
   retryTextActive: {color: '#000'},
   retryButtonBlur: {
     borderColor: '#fff',
     borderWidth: 2,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 30,
   },
   retryTextBlur: {color: '#fff'},
 });
