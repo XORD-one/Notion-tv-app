@@ -16,7 +16,7 @@ const NotionView = () => {
     const screenTime = route.params?.screenTime;
     const interval = setInterval(() => {
       updateCount();
-    }, screenTime * 60 * 1000);
+    }, (screenTime || 1) * 60 * 1000);
 
     return () => {
       clearInterval(interval);

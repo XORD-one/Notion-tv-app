@@ -6,8 +6,7 @@
  * @flow strict-local
  */
 
-import {useFocusEffect} from '@react-navigation/native';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +15,9 @@ import {
   StatusBar,
   Dimensions,
   ActivityIndicator,
+  Text,
+  TouchableHighlight,
+  findNodeHandle,
 } from 'react-native';
 import shuffle from 'lodash.shuffle';
 
@@ -28,18 +30,36 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const [screenTime, setScreenTime] = useState(0);
+  const [error, setError] = useState('');
+  const [retryFocused, setRetryFocused] = useState(false);
+
+  const touchableHighlightRef = useRef(null);
+  const onRef = useCallback(ref => {
+    if (ref) {
+      touchableHighlightRef.current = ref;
+    }
+  }, []);
 
   useEffect(() => {
-    (async () => {
+    fetchScreensData();
+  }, []);
+
+  const fetchScreensData = async () => {
+    try {
       let data = await fetch(
-        'https://raw.githubusercontent.com/n4beel/webview-example/main/SCREENS_DATA.json',
+        'https://raw.githubusercontent.com/XORD-one/Notion-tv-app/main/SCREENS_DATA.json',
       );
       data = await data.json();
       setItems(shuffle(data.screens));
       setScreenTime(data.screenTimeInMinutes);
+      setError('');
       setLoading(false);
-    })();
-  }, []);
+    } catch (error) {
+      console.log('error in fetching screens data => ', error);
+      setError('Error in fetching screens');
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -51,6 +71,41 @@ const App = () => {
           {loading ? (
             <View style={styles.loadingBody}>
               <ActivityIndicator size="large" />
+            </View>
+          ) : error ? (
+            <View style={styles.loadingBody}>
+              <Text style={{fontSize: 20}}>{error}</Text>
+              <TouchableHighlight
+                style={{backgroundColor: 'red', marginTop: 16}}
+                ref={onRef}
+                onFocus={() => {
+                  setRetryFocused(true);
+                }}
+                onBlur={() => {
+                  setRetryFocused(false);
+                }}
+                onPress={() => {
+                  setError('');
+                  fetchScreensData();
+                }}
+                hasTVPreferredFocus={true}
+                blockFocusRight={1}>
+                <View
+                  style={
+                    retryFocused
+                      ? styles.retryButtonActive
+                      : styles.retryButtonBlur
+                  }>
+                  <Text
+                    style={
+                      retryFocused
+                        ? styles.retryTextActive
+                        : styles.retryTextBlur
+                    }>
+                    Retry
+                  </Text>
+                </View>
+              </TouchableHighlight>
             </View>
           ) : (
             <View style={styles.body}>
@@ -125,6 +180,21 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  retryButtonActive: {
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+  },
+  retryTextActive: {color: '#000'},
+  retryButtonBlur: {
+    borderColor: '#fff',
+    borderWidth: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+  },
+  retryTextBlur: {color: '#fff'},
 });
 
 export default App;
